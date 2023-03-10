@@ -1,24 +1,19 @@
-const mongoose = require('mongoose');
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
+const mongoose = require('mongoose')
 
-const PORT = process.env.PORT || 3001;
-
-// middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(require('./routes'));
-
-// this is the connection to the database 
-mongoose.connect('mongodb://localhost/Social-Butterfly-API', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.createConnection('mongodb://localhost:27017/Social-Butterfly-API', {
+	useNewUrlParser: true,
 })
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('Failed to connect to MongoDB', err));
+const db = mongoose.connection;
 
-// used to show debugging information in the console
-mongoose.set('debug', true); 
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('Connected to Database'))
 
-// this is the connection to the server with verification that it is connected in the console
-app.listen(PORT, () => console.log(`Server is connected at http://localhost:${PORT}`));
+app.use(express.json());
+
+const routes = require('./routes');
+app.use('/', routes);
+
+app.listen(3001, () => console.log(`Server is connected at http://localhost:3001`)
+)
