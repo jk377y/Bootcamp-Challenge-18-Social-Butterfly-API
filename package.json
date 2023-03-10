@@ -1,0 +1,27 @@
+{
+  "name": "challenge-18-social-butterfly-api",
+  "version": "1.0.0",
+  "description": "build an API for a social network web application",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jk377y/Social-Butterfly-API.git"
+  },
+  "author": "James Kelly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jk377y/Social-Butterfly-API/issues"
+  },
+  "homepage": "https://github.com/jk377y/Social-Butterfly-API#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
