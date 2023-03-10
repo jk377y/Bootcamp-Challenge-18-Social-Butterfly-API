@@ -1,16 +1,24 @@
+const mongoose = require('mongoose');
 const express = require('express');
-const db = require('./config/connection');
-const routes = require('./routes');
-
-const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(routes);
+const PORT = process.env.PORT || 3001;
 
-db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-    });
-  });
+// middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(require('./routes'));
+
+// this is the connection to the database 
+mongoose.connect('mongodb://localhost/Social-Butterfly-API', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Failed to connect to MongoDB', err));
+
+// used to show debugging information in the console
+mongoose.set('debug', true); 
+
+// this is the connection to the server with verification that it is connected in the console
+app.listen(PORT, () => console.log(`Server is connected at http://localhost:${PORT}`));
