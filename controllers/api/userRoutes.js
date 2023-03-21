@@ -5,11 +5,11 @@ const { User, Thought } = require("../../models");
 
 //! http://localhost:3001/api/users
 
-// GET http://localhost:3001/api/users/   should return all users
+// GET ALL USERS http://localhost:3001/api/users/
 router.get("/", (req, res) => {
 	User.find({})
-		.populate({ path: "thoughts", select: "-__v" })
-		.populate({ path: "friends", select: "-__v" })
+		.populate({ path: "thoughts", select: "-__v" })  // populate thought data for the users
+		.populate({ path: "friends", select: "-__v" })  // populate friend data for the users
 		.select("-__v") // exclude the document version
 		.sort({ username: 1 }) // sort by createdAt in descending order
 		.then((dbUserData) => res.json(dbUserData))
@@ -19,11 +19,11 @@ router.get("/", (req, res) => {
 		});
 });
 
-// GET http://localhost:3001/api/users/:id   should return a single user by its _id and populated thought and user data
+// GET ONE USER http://localhost:3001/api/users/:id
 router.get("/:id", async (req, res) => {
-	User.findOne({ _id: req.params.id })
-		.populate({ path: "thoughts", select: "-__v" })
-		.populate({ path: "friends", select: "-__v" })
+	User.findOne({ _id: req.params.id })  // find one user by its _id
+		.populate({ path: "thoughts", select: "-__v" })  // populate thought data for the user 
+		.populate({ path: "friends", select: "-__v" })  // populate friend data for the user 
 		.select("-__v") // exclude the document version
 		.then((dbUserData) => res.json(dbUserData))
 		.catch((err) => {
@@ -32,27 +32,12 @@ router.get("/:id", async (req, res) => {
 		});
 });
 
+// POST NEW USER http://localhost:3001/api/users/  
 router.post('/', (req, res) => {
-	Thought.create(req.body)  // create a new thought
-        .then((thought) => {
-            return User.findOneAndUpdate( // find the user by username and push the thought's _id to the user's thoughts array
-                { username: req.body.username },
-                { $push: { thoughts: thought._id } },
-                { new: true }
-            );
-        })
-        .then((user) =>
-            !user
-            ? res.status(404).json({ message: 'No user with that username' })
-            : res.json(user)
-        )
-        .catch((err) => res.status(500).json(err));
+	User.create(req.body)  // create a new user
+	.then((user) => res.json(user))
+	.catch((err) => res.status(500).json(err));
 });
-
-
-// POST http://localhost:3001/api/users/ should create a new user
-
-
 
 
 
