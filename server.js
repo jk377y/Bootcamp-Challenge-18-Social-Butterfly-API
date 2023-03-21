@@ -1,19 +1,26 @@
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const routes = require("./controllers");
+const PORT = process.env.PORT || 3001;
+const mongoose = require("mongoose");
+mongoose.set("debug", true);
+mongoose.set('strictQuery', true);  // silence deprecation warning in console
 
-mongoose.createConnection('mongodb://localhost:27017/Social-Butterfly-API', {
-	useNewUrlParser: true,
-})
-const db = mongoose.connection;
-
-db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('Connected to Database'))
+const dbName = 'SocialButterflyAPI'
+const { connect, connection } = require('mongoose');
+const connectionString = process.env.MONGODB_URI || `mongodb://127.0.0.1:27017/${dbName}`;
+connect(connectionString, 
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    }
+); 
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(routes);
 
-const routes = require('./routes');
-app.use('/', routes);
-
-app.listen(3001, () => console.log(`Server is connected at http://localhost:3001`)
-)
+app.listen(PORT, () => {
+    console.log(`Server is connected at http://localhost:${PORT}`);
+  });

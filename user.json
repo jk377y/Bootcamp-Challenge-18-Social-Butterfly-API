@@ -1,0 +1,181 @@
+[{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf8e"
+  },
+  "username": "James",
+  "email": "james@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf8f"
+  },
+  "username": "Jason",
+  "email": "jason@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf90"
+  },
+  "username": "Jadyn",
+  "email": "jadyn@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf91"
+  },
+  "username": "Cam",
+  "email": "cam@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf92"
+  },
+  "username": "Gabby",
+  "email": "gabby@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf93"
+  },
+  "username": "Lisa",
+  "email": "lisa@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf94"
+  },
+  "username": "Jane",
+  "email": "jane@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf95"
+  },
+  "username": "Fred",
+  "email": "fred@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf96"
+  },
+  "username": "Fabien",
+  "email": "fabien@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf97"
+  },
+  "username": "Tracy",
+  "email": "tracy@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf98"
+  },
+  "username": "Sofia",
+  "email": "sofia@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf99"
+  },
+  "username": "Barry",
+  "email": "barry@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf9a"
+  },
+  "username": "Bruce",
+  "email": "bruce@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf9b"
+  },
+  "username": "Nick",
+  "email": "nick@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf9c"
+  },
+  "username": "Natasha",
+  "email": "natasha@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf9d"
+  },
+  "username": "Steve",
+  "email": "steve@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf9e"
+  },
+  "username": "Wanda",
+  "email": "wanda@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+},{
+  "_id": {
+    "$oid": "6417f5c6135c8a284f29bf9f"
+  },
+  "username": "Peter",
+  "email": "peter@gmail.com",
+  "thoughts": [],
+  "friends": [],
+  "__v": 0,
+  "friendCount": 0
+}]
