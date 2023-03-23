@@ -1,7 +1,7 @@
 {
   "name": "challenge-18-social-butterfly-api",
   "version": "1.0.0",
-  "description": "build an API for a social network web application",
+  "description": "build a CRUD API application for a social network web application",
   "main": "server.js",
   "scripts": {
     "watch": "nodemon server.js",

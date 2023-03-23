@@ -1,5 +1,5 @@
 # ***Social-Butterfly-API***
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <br>
 
 ## Description
@@ -66,6 +66,6 @@ You can help support me by donating with 💵Cash App💵 @ 💵$JK377Y💵
 <br>
 
 ## License
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <br>Copyright (c) 2023 James Kelly
 <br>Information on this license can be found at: (https://opensource.org/licenses/MIT)

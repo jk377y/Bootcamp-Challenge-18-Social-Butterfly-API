@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
 				// find the user by username and push the thought's _id to the user's thoughts array
 				{ username: req.body.username },
 				{ $push: { thoughts: thought._id } },
-				{ new: true }
+				{ new: true }  // return the updated data
 			);
 		})
 		.then((user) =>	
@@ -68,7 +68,7 @@ router.put('/:id', (req, res) => {
 			username: req.body.username,
 			thoughtText: req.body.thoughtText
 		},
-		{ new: true }
+		{ new: true }  // return the updated data
 	)
 		.then((thought) => 
 			! thought
@@ -87,7 +87,7 @@ router.delete('/:id', (req, res) => {
 				// this pulls the thought's _id from the user's thoughts array
 				{ username: thought.username },
 				{ $pull: { thoughts: thought._id } },
-				{ new: true }
+				{ new: true }  // return the updated data
 			);
 		})
 		.then((user) => res.json(user))
@@ -107,7 +107,7 @@ router.post('/:id/reactions', (req, res) => {
 	Thought.findOneAndUpdate(  // find the thought by _id
 		{id: req.params.id},
 		{ $push: { reactions: req.body } },  // push the reaction to the reactions array
-		{ new: true }
+		{ new: true }  // return the updated data
 		)
 		.then((thought) => 
 			! thought
@@ -123,7 +123,7 @@ router.delete('/:id/reactions/:reactionId', (req, res) => {
 	Thought.findOneAndUpdate(  // find the thought by _id
 			{id: req.params.id},
 			{ $pull: { reactions: { reactionId: req.params.reactionId } } },  // pull the reaction from the reactions array by reactionId
-			{ new: true }
+			{ new: true }  // return the updated data
 		)
 		.then((thought) => 
 			! thought

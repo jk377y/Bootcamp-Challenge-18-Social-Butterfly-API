@@ -2,7 +2,9 @@ const { Schema, model, Types } = require('mongoose');
 
 const ReactionSchema = new Schema(
 	{	
+		//! not using the _id value so disabling it for cleaner returns from the query
 		_id: false,
+		//! the reactionId is required for the reaction to be deleted per the instructions
 		reactionId: {
 			type: Schema.Types.ObjectId,
 			default: () => new Types.ObjectId(),
@@ -19,7 +21,7 @@ const ReactionSchema = new Schema(
 		createdAt: {
 			type: Date,
 			default: Date.now,
-			//! may not be needed - test with/without
+			// ! not needed, but used for formatting date to mm/dd/yyyy
 			set: (createdAtVal) => new Date(createdAtVal),
 			get: (createdAtVal) => new Date(createdAtVal).toLocaleDateString('en-US'),
 		},
@@ -42,7 +44,7 @@ const ThoughtSchema = new Schema(
 		createdAt: {
 			type: Date,
 			default: Date.now,
-			//! may not be needed - test with/without
+			// ! not needed, but used for formatting date to mm/dd/yyyy
 			set: (createdAtVal) => new Date(createdAtVal),
 			get: (createdAtVal) => new Date(createdAtVal).toLocaleDateString('en-US'),
 		},

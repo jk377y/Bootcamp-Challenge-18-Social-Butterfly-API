@@ -56,7 +56,7 @@ router.put('/:id', (req, res) => {
 			username: req.body.username,
 			email: req.body.email
 		},
-		{ new: true },
+		{ new: true }  // return the updated data
 	)
 	.then((user) =>
 		!user
@@ -81,11 +81,11 @@ router.delete('/:id', (req, res) => {
 //? ==================== FRIEND ROUTES ====================
 //! http://localhost:3001/api/users/:userId/friends/:friendId
 router.post('/:userId/friends/:friendId', (req, res) => {
-	// needs the user._id and friend._id in the url
+	// needs the user._id and friend's user._id in the url
 	User.findOneAndUpdate(
 		{ _id: req.params.userId },
 		{ $push: { friends: req.params.friendId } },
-		{ new: true }
+		{ new: true }  // return the updated data
 	)
 	.then((user) => 
 		! user
@@ -97,11 +97,11 @@ router.post('/:userId/friends/:friendId', (req, res) => {
 
 //! http://localhost:3001/api/users/:userId/friends/:friendId
 router.delete('/:userId/friends/:friendId', (req, res) => {
-	// needs the user._id and friend._id in the url
+	// needs the user._id and friend's user._id in the url
 	User.findOneAndUpdate(
-		{ _id: req.params.userId },  // user_id is the value of userId in the url
+		{ _id: req.params.userId },  // user_id is the value of :userId in the url
 		{ $pull: { friends: req.params.friendId } },  // takes the user_id (friendId in the url) and removes it from the friends array
-		{ new: true },
+		{ new: true }  // return the updated data
 	)
 	.then((user) =>
 		!user
