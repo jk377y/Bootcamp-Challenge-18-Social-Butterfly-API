@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
 
 //! GET http://localhost:3001/api/thoughts/:id   should return a single thought by its _id and populated thought and user data
 router.get("/:id", (req, res) => {
+	// need the thought_id in the url
 	Thought.findOne({ _id: req.params.id })
 		.select("-__v") // exclude the document version
 		.then((userData) =>	userData
@@ -53,6 +54,7 @@ router.post("/", (req, res) => {
 
 //! PUT http://localhost:3001/api/thoughts/:id
 router.put("/:id", (req, res) => {
+	// need the thought_id in the url
 	/* needs this json format in insomnia
 		{
 			both of these values are optional if you only want to update one
@@ -78,6 +80,7 @@ router.put("/:id", (req, res) => {
 
 //! DELETE http://localhost:3001/api/thoughts/:id
 router.delete("/:id", (req, res) => {
+	// need the thought_id in the url
 	Thought.findOneAndDelete({ _id: req.params.id })
 		.then((thought) => {
 			return User.findOneAndUpdate(
@@ -116,6 +119,7 @@ router.post("/:id/reactions", (req, res) => {
 
 //! DELETE http://localhost:3001/api/thoughts/:id/reactions/:reactionId
 router.delete("/:id/reactions/:reactionId", (req, res) => {
+	// need the thought_id and the reaction_id in the url
 	Thought.findOneAndUpdate(  // find the thought by _id
 			{id: req.params.id},
 			{ $pull: { reactions: { reactionId: req.params.reactionId } } },  // pull the reaction from the reactions array by reactionId
