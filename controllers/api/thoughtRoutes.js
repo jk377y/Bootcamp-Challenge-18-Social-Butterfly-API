@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const { User, Thought } = require("../../models");
 
-//! ==================== THOUGHT ROUTES ====================
+//? ==================== THOUGHT ROUTES ====================
 //! http://localhost:3001/api/thoughts
 
 //! GET http://localhost:3001/api/thoughts/   should return all thoughts
@@ -45,7 +45,7 @@ router.post("/", (req, res) => {
 		})
 		.then((user) =>	
 			! user
-			? res.status(404).json({ message: "No user with that username" })
+			? res.status(404).json({ message: 'There is no user with that username' })
 			: res.json(user)
 		)
 		.catch((err) => res.status(500).json(err));
@@ -70,7 +70,7 @@ router.put("/:id", (req, res) => {
 	)
 		.then((thought) => 
 			! thought
-			? res.status(404).json({ message: "No thought with that ID" })
+			? res.status(404).json({ message: 'There is no thought with that ID' })
 			: res.json(thought)
 		)
 		.catch((err) => res.status(500).json(err));
@@ -92,5 +92,41 @@ router.delete("/:id", (req, res) => {
 }),
 
 
+//? ==================== REACTION ROUTES ====================
+//! POST http://localhost:3001/api/thoughts/:id/reactions
+router.post("/:id/reactions", (req, res) => {
+	/* needs this json format in insomnia
+		{
+			"username": "the user name here",
+			"reactionBody": "some text here"
+		}
+	*/
+	Thought.findOneAndUpdate(  // find the thought by _id
+		{id: req.params.id},
+		{ $push: { reactions: req.body } },  // push the reaction to the reactions array
+		{ new: true }
+		)
+		.then((thought) => 
+			! thought
+			? res.status(404).json({ message: 'There is no thought with that ID' })
+			: res.json(thought)
+		)
+		.catch((err) => res.status(500).json(err));		
+});
+
+//! DELETE http://localhost:3001/api/thoughts/:id/reactions/:reactionId
+router.delete("/:id/reactions/:reactionId", (req, res) => {
+	Thought.findOneAndUpdate(  // find the thought by _id
+			{id: req.params.id},
+			{ $pull: { reactions: { reactionId: req.params.reactionId } } },  // pull the reaction from the reactions array by reactionId
+			{ new: true }
+		)
+		.then((thought) => 
+			! thought
+			? res.status(404).json({ message: 'There is no thought with that ID' })
+			: res.json(thought)
+		)
+		.catch((err) => res.status(500).json(err));
+});
 
 module.exports = router;

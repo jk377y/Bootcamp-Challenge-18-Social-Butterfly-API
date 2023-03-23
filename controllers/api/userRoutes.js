@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const { User, Thought } = require("../../models");
 
-//! ==================== USER ROUTES ====================
+//? ==================== USER ROUTES ====================
 //! http://localhost:3001/api/users
 
 
@@ -60,7 +60,7 @@ router.put("/:id", (req, res) => {
 	)
 	.then((user) =>
 		!user
-		? res.status(404).json({ message: 'No user with that ID' })
+		? res.status(404).json({ message: 'There is no user with that ID' })
 		: res.json(user)
 	)
 	.catch((err) => res.status(500).json(err));
@@ -68,14 +68,32 @@ router.put("/:id", (req, res) => {
 
 //! DELETE http://localhost:3001/api/users/:id
 router.delete("/:id", (req, res) => {
-	User.findOneAndDelete({ _id: req.params.id })
+	User.findOneAndDelete({ _id: req.params.id })  // deletes the user
         .then((user) =>
             ! user
-            ? res.status(404).json({ message: 'No user with that ID' })
-            : Thought.deleteMany({ _id: { $in: user.thoughts } })
+            ? res.status(404).json({ message: 'There is no user with that ID' })
+            : Thought.deleteMany({ _id: { $in: user.thoughts } })  // if user is deleted, then deletes all thoughts associated with the user
         )
         .then(() => res.json({ message: 'This user and their thoughts have been deleted.' }))
         .catch((err) => res.status(500).json(err));
 }),
+
+//? ==================== FRIEND ROUTES ====================
+//! http://localhost:3001/api/users/:userId/friends/:friendId
+router.post("/:userId/friends/:friendId", (req, res) => {
+	User.findOneAndUpdate(
+		{ _id: req.params.userId },
+		{ $push: { friends: req.params.friendId } },
+		{ new: true }
+	)
+	.then((user) => 
+		! user
+		? res.status(404).json({ message: 'There is no user with that ID' })
+		: res.json(user)
+	)
+	.catch((err) => res.status(500).json(err));
+});
+
+
 
 module.exports = router;
