@@ -34,6 +34,12 @@ router.get("/:id", (req, res) => {
 
 // POST http://localhost:3001/api/thoughts/ 
 router.post('/', (req, res) => {
+	/* needs this json format in insomnia
+		{
+			"username": "the user name here",
+			"thoughtText": "some text here"
+		}
+	 */
 	Thought.create(req.body)  // create a new thought
         .then((thought) => {
             return User.findOneAndUpdate( // find the user by username and push the thought's _id to the user's thoughts array
