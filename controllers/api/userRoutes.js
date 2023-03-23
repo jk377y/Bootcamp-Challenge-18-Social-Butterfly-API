@@ -15,10 +15,7 @@ router.get("/", (req, res) => {
 		.select("-__v") // exclude the document version
 		.sort({ username: 1 }) // sort by createdAt in descending order
 		.then((dbUserData) => res.json(dbUserData))
-		.catch((err) => {
-			console.log(err);
-			res.status(400).json(err);
-		});
+		.catch((err) => { res.status(400).json(err) });
 });
 
 //! GET ONE USER http://localhost:3001/api/users/:id
@@ -28,10 +25,7 @@ router.get("/:id", async (req, res) => {
 		.populate({ path: "friends", select: "-__v" })  // populate friend data for the user 
 		.select("-__v") // exclude the document version
 		.then((dbUserData) => res.json(dbUserData))
-		.catch((err) => {
-			console.log(err);
-			res.status(400).json(err);
-		});
+		.catch((err) => { res.status(400).json(err)	});
 });
 
 //! POST NEW USER http://localhost:3001/api/users/  

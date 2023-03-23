@@ -12,10 +12,7 @@ router.get("/", (req, res) => {
 		.select("-__v") // exclude the document version
 		.sort({ createdAt: -1 }) // sort by createdAt in descending order
 		.then((allUserData) => res.json(allUserData))
-		.catch((err) => {
-			console.log(err);
-			res.status(400).json(err);
-		});
+		.catch((err) => { res.status(400).json(err) });
 });
 
 // GET http://localhost:3001/api/thoughts/:id   should return a single thought by its _id and populated thought and user data
@@ -26,10 +23,7 @@ router.get("/:id", (req, res) => {
 			? res.json(userData) 
 			: res.status(404).json({ message: "Thought not found" })
 		)
-		.catch((err) => {
-			console.log(err);
-			res.status(400).json(err);
-		});
+		.catch((err) => { res.status(400).json(err)	});
 });
 
 // POST http://localhost:3001/api/thoughts/ 
