@@ -50,4 +50,31 @@ router.post('/', (req, res) => {
         .catch((err) => res.status(500).json(err));
 });
 
+// PUT http://localhost:3001/api/thoughts/:id
+router.put("/:id", (req, res) => {
+	/* needs this json format in insomnia
+		{
+			both of these values are optional if you only want to update one
+			"thoughtText": "change this value is you want to",
+			"username": "change this value is you want to"
+		}
+	*/
+	Thought.findOneAndUpdate(
+		{ _id: req.params.id },
+		{ 
+			username: req.body.username,
+			thoughtText: req.body.thoughtText
+		},
+		{ new: true },
+	)
+	.then((thought) =>
+		!thought
+		? res.status(404).json({ message: 'No thought with that ID' })
+		: res.json(thought)
+	)
+	.catch((err) => res.status(500).json(err));
+}),
+
+
+
 module.exports = router;
