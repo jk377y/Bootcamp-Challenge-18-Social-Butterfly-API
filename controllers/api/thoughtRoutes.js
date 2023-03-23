@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
 const { User, Thought } = require("../../models");
 
-
+//! ==================== THOUGHT ROUTES ====================
 //! http://localhost:3001/api/thoughts
 
-// GET http://localhost:3001/api/thoughts/   should return all thoughts
+//! GET http://localhost:3001/api/thoughts/   should return all thoughts
 router.get("/", (req, res) => {
 	Thought.find({})
 		.select("-__v") // exclude the document version
@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 		.catch((err) => { res.status(400).json(err) });
 });
 
-// GET http://localhost:3001/api/thoughts/:id   should return a single thought by its _id and populated thought and user data
+//! GET http://localhost:3001/api/thoughts/:id   should return a single thought by its _id and populated thought and user data
 router.get("/:id", (req, res) => {
 	Thought.findOne({ _id: req.params.id })
 		.select("-__v") // exclude the document version
@@ -26,7 +26,7 @@ router.get("/:id", (req, res) => {
 		.catch((err) => { res.status(400).json(err)	});
 });
 
-// POST http://localhost:3001/api/thoughts/ 
+//! POST http://localhost:3001/api/thoughts/ 
 router.post('/', (req, res) => {
 	/* needs this json format in insomnia
 		{
@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
         .catch((err) => res.status(500).json(err));
 });
 
-// PUT http://localhost:3001/api/thoughts/:id
+//! PUT http://localhost:3001/api/thoughts/:id
 router.put("/:id", (req, res) => {
 	/* needs this json format in insomnia
 		{
@@ -75,6 +75,6 @@ router.put("/:id", (req, res) => {
 	.catch((err) => res.status(500).json(err));
 }),
 
-
+//! DELETE http://localhost:3001/api/thoughts/:id
 
 module.exports = router;

@@ -7,7 +7,7 @@ const { User, Thought } = require("../../models");
 //! http://localhost:3001/api/users
 
 
-//! GET ALL USERS http://localhost:3001/api/users/
+//! GET http://localhost:3001/api/users/
 router.get("/", (req, res) => {
 	User.find({})
 		.populate({ path: "thoughts", select: "-__v" })  // populate thought data for the users
@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
 		.catch((err) => { res.status(400).json(err) });
 });
 
-//! GET ONE USER http://localhost:3001/api/users/:id
+//! GET http://localhost:3001/api/users/:id
 router.get("/:id", async (req, res) => {
 	User.findOne({ _id: req.params.id })  // find one user by its _id
 		.populate({ path: "thoughts", select: "-__v" })  // populate thought data for the user 
@@ -28,7 +28,7 @@ router.get("/:id", async (req, res) => {
 		.catch((err) => { res.status(400).json(err)	});
 });
 
-//! POST NEW USER http://localhost:3001/api/users/  
+//! POST http://localhost:3001/api/users/  
 router.post('/', (req, res) => {
 	/* needs this json format in insomnia
 		{
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
 	.catch((err) => res.status(500).json(err));
 });
 
-//! PUT UPDATE USER http://localhost:3001/api/users/:id
+//! PUT http://localhost:3001/api/users/:id
 router.put("/:id", (req, res) => {
 	/* needs this json format in insomnia
 		{ 
