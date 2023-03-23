@@ -66,4 +66,16 @@ router.put("/:id", (req, res) => {
 	.catch((err) => res.status(500).json(err));
 }),
 
+//! DELETE http://localhost:3001/api/users/:id
+router.delete("/:id", (req, res) => {
+	User.findOneAndDelete({ _id: req.params.id })
+        .then((user) =>
+            ! user
+            ? res.status(404).json({ message: 'No user with that ID' })
+            : Thought.deleteMany({ _id: { $in: user.thoughts } })
+        )
+        .then(() => res.json({ message: 'This user and their thoughts have been deleted.' }))
+        .catch((err) => res.status(500).json(err));
+}),
+
 module.exports = router;

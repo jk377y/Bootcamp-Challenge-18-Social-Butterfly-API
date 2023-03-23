@@ -81,6 +81,7 @@ router.delete("/:id", (req, res) => {
 	Thought.findOneAndDelete({ _id: req.params.id })
 		.then((thought) => {
 			return User.findOneAndUpdate(
+				// this pulls the thought's _id from the user's thoughts array
 				{ username: thought.username },
 				{ $pull: { thoughts: thought._id } },
 				{ new: true }
