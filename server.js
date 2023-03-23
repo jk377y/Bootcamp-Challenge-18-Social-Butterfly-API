@@ -1,10 +1,10 @@
-require("dotenv").config();
-const express = require("express");
+require('dotenv').config();
+const express = require('express');
 const app = express();
-const routes = require("./controllers");
+const routes = require('./controllers');
 const PORT = process.env.PORT || 3001;
-const mongoose = require("mongoose");
-mongoose.set("debug", true);
+const mongoose = require('mongoose');
+mongoose.set('debug', true);
 mongoose.set('strictQuery', true);  // silence deprecation warning in console
 
 const dbName = 'SocialButterflyAPI'
