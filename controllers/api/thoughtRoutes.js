@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const { User, Thought } = require("../../models");
 
@@ -19,35 +19,36 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
 	Thought.findOne({ _id: req.params.id })
 		.select("-__v") // exclude the document version
-		.then((userData) =>	userData 
-			? res.json(userData) 
+		.then((userData) =>	userData
+			? res.json(userData)
 			: res.status(404).json({ message: "Thought not found" })
 		)
-		.catch((err) => { res.status(400).json(err)	});
+		.catch((err) => { res.status(400).json(err) });
 });
 
-//! POST http://localhost:3001/api/thoughts/ 
-router.post('/', (req, res) => {
+//! POST http://localhost:3001/api/thoughts/
+router.post("/", (req, res) => {
 	/* needs this json format in insomnia
 		{
 			"username": "the user name here",
 			"thoughtText": "some text here"
 		}
 	 */
-	Thought.create(req.body)  // create a new thought
-        .then((thought) => {
-            return User.findOneAndUpdate( // find the user by username and push the thought's _id to the user's thoughts array
-                { username: req.body.username },
-                { $push: { thoughts: thought._id } },
-                { new: true }
-            );
-        })
-        .then((user) =>
-            !user
-            ? res.status(404).json({ message: 'No user with that username' })
-            : res.json(user)
-        )
-        .catch((err) => res.status(500).json(err));
+	Thought.create(req.body) // create a new thought
+		.then((thought) => {
+			return User.findOneAndUpdate(
+				// find the user by username and push the thought's _id to the user's thoughts array
+				{ username: req.body.username },
+				{ $push: { thoughts: thought._id } },
+				{ new: true }
+			);
+		})
+		.then((user) =>	
+			! user
+			? res.status(404).json({ message: "No user with that username" })
+			: res.json(user)
+		)
+		.catch((err) => res.status(500).json(err));
 });
 
 //! PUT http://localhost:3001/api/thoughts/:id
@@ -61,20 +62,34 @@ router.put("/:id", (req, res) => {
 	*/
 	Thought.findOneAndUpdate(
 		{ _id: req.params.id },
-		{ 
+		{
 			username: req.body.username,
 			thoughtText: req.body.thoughtText
 		},
-		{ new: true },
+		{ new: true }
 	)
-	.then((thought) =>
-		!thought
-		? res.status(404).json({ message: 'No thought with that ID' })
-		: res.json(thought)
-	)
-	.catch((err) => res.status(500).json(err));
+		.then((thought) => 
+			! thought
+			? res.status(404).json({ message: "No thought with that ID" })
+			: res.json(thought)
+		)
+		.catch((err) => res.status(500).json(err));
 }),
 
 //! DELETE http://localhost:3001/api/thoughts/:id
+router.delete("/:id", (req, res) => {
+	Thought.findOneAndDelete({ _id: req.params.id })
+		.then((thought) => {
+			return User.findOneAndUpdate(
+				{ username: thought.username },
+				{ $pull: { thoughts: thought._id } },
+				{ new: true }
+			);
+		})
+		.then((user) => res.json(user))
+		.catch((err) => res.status(500).json(err));
+}),
+
+
 
 module.exports = router;
