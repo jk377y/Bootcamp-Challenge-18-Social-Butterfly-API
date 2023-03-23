@@ -56,12 +56,13 @@ Here is an example of a GET request to the /api/users route:
 
 ## Questions
 For Questions, I can be reached at the following:
-<br>GitHub:  <a href ="https://github.com/jk377y" target="_blank">@ JK377y</a>
-<br>OR
-<br>Email:  jk377y@gmail.com
 <br>
 
+<a href="https://www.linkedin.com/in/james-kelly-b93a94150/" target="_blank"><img src="https://img.icons8.com/fluency/64/null/linkedin.png" alt="james kelly" height="64" width="64" /></a>&emsp;<a href="https://github.com/jk377y" target="_blank"><img src="https://img.icons8.com/plasticine/64/null/github.png" alt="myGitHub" height="64" width="64" /></a>&emsp;<a href="mailto:jk377y@gmail.com" target="_blank"><img src="https://img.icons8.com/fluency/64/null/apple-mail.png" alt="jk377y" height="64" width="64" /></a>
+
 ## Contributing
+Check out my portfolio <a href="https://jk377y.github.io/Personal-portfolio/" target="_blank">here.</a>
+<br>
 You can help support me by donating with 💵Cash App💵 @ 💵$JK377Y💵
 <br>
 
