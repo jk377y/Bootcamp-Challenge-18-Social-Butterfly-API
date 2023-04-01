@@ -84,7 +84,7 @@ router.post('/:userId/friends/:friendId', (req, res) => {
 	// needs the user._id and friend's user._id in the url
 	User.findOneAndUpdate(
 		{ _id: req.params.userId },
-		{ $push: { friends: req.params.friendId } },
+		{ $addToSet: { friends: req.params.friendId } },
 		{ new: true }  // return the updated data
 	)
 	.then((user) => 

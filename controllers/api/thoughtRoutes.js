@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
 			return User.findOneAndUpdate(
 				// find the user by username and push the thought's _id to the user's thoughts array
 				{ username: req.body.username },
-				{ $push: { thoughts: thought._id } },
+				{ $addToSet: { thoughts: thought._id } },
 				{ new: true }  // return the updated data
 			);
 		})
@@ -106,7 +106,7 @@ router.post('/:id/reactions', (req, res) => {
 	*/
 	Thought.findOneAndUpdate(  // find the thought by _id
 		{id: req.params.id},
-		{ $push: { reactions: req.body } },  // push the reaction to the reactions array
+		{ $addToSet: { reactions: req.body } },  // push the reaction to the reactions array
 		{ new: true }  // return the updated data
 		)
 		.then((thought) => 

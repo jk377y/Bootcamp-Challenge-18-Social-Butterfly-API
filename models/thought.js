@@ -23,7 +23,15 @@ const ReactionSchema = new Schema(
 			default: Date.now,
 			// ! not needed, but used for formatting date to mm/dd/yyyy
 			set: (createdAtVal) => new Date(createdAtVal),
-			get: (createdAtVal) => new Date(createdAtVal).toLocaleDateString('en-US'),
+			get: (createdAtVal) => new Date(createdAtVal).toLocaleString('en-US', { 
+				month: '2-digit', 
+				day: '2-digit', 
+				year: 'numeric', 
+				hour: '2-digit', 
+				minute: '2-digit', 
+				second: '2-digit', 
+				hour12: false 
+			})
 		},
 	},
 	{
@@ -46,7 +54,15 @@ const ThoughtSchema = new Schema(
 			default: Date.now,
 			// ! not needed, but used for formatting date to mm/dd/yyyy
 			set: (createdAtVal) => new Date(createdAtVal),
-			get: (createdAtVal) => new Date(createdAtVal).toLocaleDateString('en-US'),
+			get: (createdAtVal) => new Date(createdAtVal).toLocaleString('en-US', { 
+				month: '2-digit', 
+				day: '2-digit', 
+				year: 'numeric', 
+				hour: '2-digit', 
+				minute: '2-digit', 
+				second: '2-digit', 
+				hour12: false 
+			})
 		},
 		username: {
 			type: String,
